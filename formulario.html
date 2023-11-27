@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario</title>
+    <link rel="stylesheet" href="formulario.css">
+    <script src="formulario.js"></script>
 </head>
+
 <body>
     <h1>Registro de Usuario</h1>
 
@@ -18,28 +21,22 @@
             <label for="username">Username<span class="asterisco">*</span></label><br>
             <label for="password">Contraseña<span class="asterisco">*</span></label><br>
             <label for="repetir-contrasena">Repetir Contraseña<span class="asterisco">*</span></label><br>
-            <label>Deseas recibir avisos comerciales?</label><br>
+            <label for="avisos">Deseas recibir avisos comerciales?</label><br><br>
+            <p>Los campos con<span class="asterisco">*</span>son obligatorios</p>
+            <button type="submit" >Registrarse</button>
         </div>
 
 
         <div class="inputs">
-
-            <input type="text" id="nombre" name="nombre"><br>
-            <input type="text" id="apellidos" name="apellidos"><br>
+            <input type="text" id="nombre" name="nombre"><span id="mensajeNombre"></span><br>
+            <input type="text" id="apellidos" name="apellidos"><span id="mensajeApellido"></span><br>
             <input type="text" id="email" name="email"><br>
-            <input type="text" id="dni" name="dni"><br>
+            <input type="text" id="dni" name="dni"><span id="mensajeDNI"></span><br>
             <input type="text" id="username" name="username"><br>
             <input type="password" id="password" name="password"><br>
-            
-
-
-
-
+            <input type="password" id="repetir-contrasena" name="repetir-contrasena"><br>
+            <input type="checkbox" id="avisos" name="avisos">
         </div>
-
-
-
-
 
     </form>
 
