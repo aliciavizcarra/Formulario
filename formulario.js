@@ -57,13 +57,26 @@ function comprobarDNI(e){
 
     let mensajeDNI = document.getElementById("mensajeDNI");
 
+    let patron = /^[0-9]{8}/;
+
+
     if(!dni.value.length==9){
 
         dni.classList.add("invalido");
         mensajeDNI.innerText=" El DNI no tiene una longitud de 9 caracteres"
         return false;
-
     }
+
+    if(!patron.test(dni.value)){
+        dni.classList.add("invalido");
+        mensajeDNI.innerText=" Los 8 primeros digitos han de ser numeros"
+        return false;
+    }
+
+    mensajeDNI.innerText="";
+    dni.classList.remove("invalido");
+    return true;
+
 
 }
 
