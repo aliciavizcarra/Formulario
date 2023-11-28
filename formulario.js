@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     document.getElementById("nombre").addEventListener("blur", comprobarNombre);
     document.getElementById("apellidos").addEventListener("blur", comprobarApellido);
-    document.getElementById("dni").addEventListener("blur", comprobarDNI)
+    document.getElementById("dni").addEventListener("blur", comprobarDNI);
+    document.getElementById("username").addEventListener("focus", comprobarUsername);
 
 
 })
@@ -57,16 +58,29 @@ function comprobarDNI(e){
 
     let mensajeDNI = document.getElementById("mensajeDNI");
 
-    let patron = /^[0-9]{8}/;
+    let patron = /^[0-9]{8}[A-Z]$/;
 
+    let letra = dni.value.charAt(8);
 
-    if(!dni.value.length==9){
+    let letras ="TRWAGMYFPDXB"
 
+    let numeros = dni.value.substring(0,8); //eL VALUE POR DIOS
+
+    let resto = numeros%23;
+
+    if(dni.value.length!==9){
         dni.classList.add("invalido");
         mensajeDNI.innerText=" El DNI no tiene una longitud de 9 caracteres"
         return false;
     }
 
+    if(letras.charAt(resto)!== letra){
+        mensajeDNI.innerText=" La letra del DNI es incorrecta"
+        dni.classList.add("invalido");
+        return false;
+    }
+
+   
     if(!patron.test(dni.value)){
         dni.classList.add("invalido");
         mensajeDNI.innerText=" Los 8 primeros digitos han de ser numeros"
@@ -77,8 +91,22 @@ function comprobarDNI(e){
     dni.classList.remove("invalido");
     return true;
 
+}
+
+function comprobarUsername(e){
+
+    let nombre = document.getElementById("nombre");
+    let apellidos = document.getElementById("apellidos");
+    let username = document.getElementById("username");
+
+    
+
+    let sugerencia = nombre.value.charAt(0).toLowerCase() + apellidos.value.toLowerCase();
+
+
 
 }
+
 
 
 
