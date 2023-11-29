@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     document.getElementById("apellidos").addEventListener("blur", comprobarApellido);
     document.getElementById("dni").addEventListener("blur", comprobarDNI);
     document.getElementById("username").addEventListener("focus", comprobarUsername);
+    document.getElementById("password").addEventListener("input", comprobarPassword);
 
 
 })
@@ -99,13 +100,47 @@ function comprobarUsername(e){
     let apellidos = document.getElementById("apellidos");
     let username = document.getElementById("username");
 
-    
+    if(username.value.trim() === ""){ //trim te borra todo del input y te loc ompara con lo de los espacios
+        let sugerencia = nombre.value.charAt(0).toLowerCase() + apellidos.value.split(" ").join("").toLowerCase();
+        return username.value = sugerencia;
+    }else{
+        return true;
+    }
+}
 
-    let sugerencia = nombre.value.charAt(0).toLowerCase() + apellidos.value.toLowerCase();
+function comprobarPassword(e){
 
+    let password = document.getElementById("password");
+    let mensajePassword = document.getElementById("mensajePassword")
 
+    let patron = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm 
+
+    if(!patron.test(password.value)){
+
+        if(password.value.length <8){
+            mensajePassword.innerText="La contraseña ha de tener mínimo 8 caracteres"    
+        }else if (!/[a-z]/.test(password.value)){
+            mensajePassword.innerText="La contraseña tiene que contener mínimo una minúscula"
+        }else if(!/[A-Z]/.test(password.value)){
+            mensajePassword.innerText="La contraseña tiene que contener mínimo una mayúsucla"
+        }else if(!/\d/.test(password.value)){
+            mensajePassword.innerText="La contraseña tiene que contener por lo menos un número"
+        }else{
+            mensajePassword.innerText="El formato es inválido"
+        }
+        password.classList.add("invalido");
+        return "false";
+
+    }else{
+        mensajePassword.innerText="";
+        password.classList.remove("invalido");
+        return true;
+    }
+
+   
 
 }
+
 
 
 
